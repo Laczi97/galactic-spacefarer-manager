@@ -18,7 +18,7 @@ service SpacefarerService @(requires: 'authenticated-user') {
 
   @restrict: [
     { grant: ['CREATE','DELETE','READ','UPDATE'], to: 'admin' },
-    { grant: ['READ','UPDATE'],   to: 'user' }
+    { grant: ['READ','UPDATE'],   to: 'user', where: 'originPlanet = $user.originPlanet' }
   ]
-  entity Spacefarers as projection on federation.Spacefarers;
+  entity Spacefarers @(odata.draft.enabled: true) as projection on federation.Spacefarers;
 }

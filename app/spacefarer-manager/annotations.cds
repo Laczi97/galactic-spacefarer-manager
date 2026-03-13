@@ -5,42 +5,42 @@ annotate service.Spacefarers with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Label : 'name',
+                Label : 'Name',
                 Value : name,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'originPlanet',
+                Label : 'Origin Planet',
                 Value : originPlanet,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'spacesuitColor',
+                Label : 'Spacesuit Color',
                 Value : spacesuitColor,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'stardustCollection',
+                Label : 'Stardust Collection',
                 Value : stardustCollection,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'wormholeNavigationSkill',
+                Label : 'Wormhole Navigation Skill',
                 Value : wormholeNavigationSkill,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'department_ID',
+                Label : 'Department',
                 Value : department_ID,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'position_ID',
+                Label : 'Position',
                 Value : position_ID,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'email',
+                Label : 'E-mail',
                 Value : email,
             },
         ],
@@ -56,77 +56,88 @@ annotate service.Spacefarers with @(
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Label : 'name',
+            Label : 'Name',
             Value : name,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'originPlanet',
-            Value : originPlanet,
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'spacesuitColor',
+            Label : 'Spacesuit Color',
             Value : spacesuitColor,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'stardustCollection',
+            Label : 'Stardust Collection',
             Value : stardustCollection,
         },
-        {
-            $Type : 'UI.DataField',
-            Label : 'wormholeNavigationSkill',
-            Value : wormholeNavigationSkill,
-        },
     ],
+    UI.HeaderInfo : {
+        @UI.Hidden : true,
+        $Type : 'UI.HeaderInfoType',
+        TypeName : 'Spacefarer',
+        TypeNamePlural : 'Spacefarers',
+    }
+);
+
+annotate service.Spacefarers with @(
+    Common.SideEffects #DepartmentChanged : {
+        SourceProperties : [department_ID],
+        TargetProperties  : ['position_ID'],
+    }
 );
 
 annotate service.Spacefarers with {
-    department @Common.ValueList : {
-        $Type : 'Common.ValueListType',
-        CollectionPath : 'Departments',
-        Parameters : [
-            {
-                $Type : 'Common.ValueListParameterInOut',
-                LocalDataProperty : department_ID,
-                ValueListProperty : 'ID',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'name',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'description',
-            },
-        ],
-    }
+    department_ID @(
+        Common.Text : department.name,
+        Common.TextArrangement : #TextOnly,
+        Common.ValueListWithFixedValues : true,
+        Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            Label : 'Department',
+            CollectionPath : 'Departments',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterOut',
+                    LocalDataProperty : department_ID,
+                    ValueListProperty : 'ID',
+                },
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'name',
+                },
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'description',
+                },
+            ],
+        }
+    )
 };
 
 annotate service.Spacefarers with {
-    position @Common.ValueList : {
-        $Type : 'Common.ValueListType',
-        CollectionPath : 'Positions',
-        Parameters : [
-            {
-                $Type : 'Common.ValueListParameterInOut',
-                LocalDataProperty : position_ID,
-                ValueListProperty : 'ID',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'title',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'level',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'department_ID',
-            },
-        ],
-    }
+    position_ID @(
+        Common.Text : position.title,
+        Common.TextArrangement : #TextOnly,
+        Common.ValueListWithFixedValues : true,
+        Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            Label : 'Position',
+            CollectionPath : 'Positions',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterIn',
+                    LocalDataProperty : department_ID,
+                    ValueListProperty : 'department_ID',
+                },
+                {
+                    $Type : 'Common.ValueListParameterOut',
+                    LocalDataProperty : position_ID,
+                    ValueListProperty : 'ID',
+                },
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'title',
+                },
+            ],
+        }
+    )
 };
-

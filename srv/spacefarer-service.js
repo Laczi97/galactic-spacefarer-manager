@@ -1,5 +1,12 @@
 export default (srv) => {
 
+    // clear position when department changes in draft
+    srv.before('PATCH', 'Spacefarers.drafts', (/**@type Request*/ req) => {
+        if ('department_ID' in req.data) {
+            req.data.position_ID = null;
+        }
+    });
+
     // spacefarer validation
     srv.before('CREATE', 'Spacefarers', async (/**@type Request*/ req) => {
         const { data } = req;
