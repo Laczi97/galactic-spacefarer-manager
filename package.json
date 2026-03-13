@@ -5,10 +5,12 @@
     "@sap/cds": "^9"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^2"
+    "@cap-js/sqlite": "^2",
+    "cds-plugin-ui5": "^0.13.0"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "watch-spacefarer-manager": "cds watch --open com.spacefederation.spacefarers.spacefarermanager/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "cds": {
     "requires": {
@@ -23,14 +25,18 @@
         "users": {
           "techelek": {
             "password": "techelek",
-            "roles": ["admin"],
+            "roles": [
+              "admin"
+            ],
             "attr": {
               "originPlanet": "Mars"
             }
           },
           "mezgageza": {
             "password": "mezgageza",
-            "roles": ["user"],
+            "roles": [
+              "user"
+            ],
             "attr": {
               "originPlanet": "Earth"
             }
@@ -39,5 +45,11 @@
       }
     }
   },
-  "private": false
+  "private": false,
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/spacefarer-manager"
+  ]
 }
