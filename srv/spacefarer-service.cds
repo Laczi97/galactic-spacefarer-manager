@@ -1,10 +1,24 @@
 using com.spacefederation as federation from '../db/schema';
 
-service SpacefarerService {
+service SpacefarerService @(requires: 'authenticated-user') {
 
-    entity Departments as projection on federation.Departments;
-    
-    entity Positions as projection on federation.Positions;
+  @restrict: [
+    { grant: ['CREATE','DELETE','READ','UPDATE'], to: 'admin' },
+    { grant: ['READ','UPDATE'],   to: 'user' }
+  ]
+  entity Departments as projection on federation.Departments;
 
-    entity Spacefarers as projection on federation.Spacefarers;
+
+  @restrict: [
+    { grant: ['CREATE','DELETE','READ','UPDATE'], to: 'admin' },
+    { grant: ['READ','UPDATE'],   to: 'user' }
+  ]
+  entity Positions as projection on federation.Positions;
+
+
+  @restrict: [
+    { grant: ['CREATE','DELETE','READ','UPDATE'], to: 'admin' },
+    { grant: ['READ','UPDATE'],   to: 'user' }
+  ]
+  entity Spacefarers as projection on federation.Spacefarers;
 }
