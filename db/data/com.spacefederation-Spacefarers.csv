@@ -1,0 +1,11 @@
+name,originPlanet,spacesuitColor,stardustCollection,wormholeNavigationSkill,department_ID,position_ID,email
+John Doe,Planet X,purple,10.1234,10,5,1,john.doe@spacefederation.com
+Sarah Smith,Mars,blue,25.5678,15,1,2,sarah.smith@spacefederation.com
+Marcus Johnson,Venus,red,18.9012,12,1,3,marcus.johnson@spacefederation.com
+Elena Rodriguez,Jupiter,silver,32.3456,18,2,4,elena.rodriguez@spacefederation.com
+David Chen,Saturn,gold,22.7890,14,2,5,david.chen@spacefederation.com
+Zara Patel,Kepler-452b,green,28.1234,16,3,6,zara.patel@spacefederation.com
+James Wilson,Earth,white,15.5678,11,3,7,james.wilson@spacefederation.com
+Dr. Amara Okafor,Sol,orange,30.9012,17,4,8,amara.okafor@spacefederation.com
+Lisa Anderson,Andromeda,cyan,12.3456,9,4,9,lisa.anderson@spacefederation.com
+Captain Alexander,Proxima Centauri,black,45.6789,19,5,1,alexander.captain@spacefederation.com
