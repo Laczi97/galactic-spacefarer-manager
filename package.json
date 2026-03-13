@@ -2,7 +2,8 @@
   "name": "galactic-spacefarer-manager",
   "version": "1.0.0",
   "dependencies": {
-    "@sap/cds": "^9"
+    "@sap/cds": "^9",
+    "nodemailer": "^8.0.2"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2",

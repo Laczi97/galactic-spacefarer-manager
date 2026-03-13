@@ -1,3 +1,5 @@
+import { sendWelcomeEmail } from './lib/mailer.js';
+
 export default (srv) => {
 
     // clear position when department changes in draft
@@ -22,7 +24,11 @@ export default (srv) => {
 
     // send notification email after creating a new Spacefarer
     srv.after('CREATE', 'Spacefarers', async (spacefarer) => {
-
+        try {
+            await sendWelcomeEmail(spacefarer);
+        } catch (err) {
+            console.error('[Email] Failed to send notification:', err.message);
+        }
     });
 
 }
