@@ -1,0 +1,43 @@
+{
+  "name": "galactic-spacefarer-manager",
+  "version": "1.0.0",
+  "dependencies": {
+    "@sap/cds": "^9"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "url": "db/spacefederation.sqlite"
+        }
+      },
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "techelek": {
+            "password": "techelek",
+            "roles": ["admin"],
+            "attr": {
+              "originPlanet": "Mars"
+            }
+          },
+          "mezgageza": {
+            "password": "mezgageza",
+            "roles": ["user"],
+            "attr": {
+              "originPlanet": "Earth"
+            }
+          }
+        }
+      }
+    }
+  },
+  "private": false
+}
